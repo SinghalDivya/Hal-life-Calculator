@@ -1,5 +1,11 @@
 
-# coding: utf-8
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+#/// \file Half_Life_Calculator.py
+#/// \brief 
+#/// 
+#///
+#//  Author: Divya Singhal
+#////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import the required packages
 import csv
@@ -8,7 +14,11 @@ import pandas as pan
 from scipy import stats
 from operator import itemgetter
 
-# ParseTextIntoTables function is created to load the given data in text format and and reading into table.
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+#/// \function ParseTextIntoTables 
+#/// \brief function is created to load the given data in text format and reading into table.
+#/// \returns value i.e. 
+#////////////////////////////////////////////////////////////////////////////////////////////////////
 def ParseTextIntoTables(table,x,y):
     values = list()
     rows = len(table)
@@ -18,7 +28,11 @@ def ParseTextIntoTables(table,x,y):
         values.append(updatedVal)
     return values
 
-# HalfLifeCalculator function is created to evaluate the transcript half life.
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+#/// \function HalfLifeCalculator
+#/// \brief function is created to evaluate the transcript half life. 
+#/// \returns value i.e. 
+#////////////////////////////////////////////////////////////////////////////////////////////////////
 def HalfLifeCalculator(values):
     HalfLife = list()
     rows = len(values)
@@ -28,7 +42,11 @@ def HalfLifeCalculator(values):
         HalfLife.append(tempHL)
     return HalfLife
 
-# HandleNaN function created to replace any NAN value with the mean value of the data.
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+#/// \function HandleNaN 
+#/// \brief function created to replace any NAN value with the mean value of the data. 
+#/// \returns value i.e. 
+#////////////////////////////////////////////////////////////////////////////////////////////////////
 def HandleNaN(listValues):
     df = pan.DataFrame({
     'Cordinates': pan.Series(
@@ -44,7 +62,11 @@ def HandleNaN(listValues):
     meanList = df.fillna(df.mean(),axis=0)
     return meanList['Cordinates'].values.tolist()
 
-#listToPandaDataFrame function is created to convert the list of values into dataframe.
+#////////////////////////////////////////////////////////////////////////////////////////////////////
+#/// \function listToPandaDataFrame 
+#/// \brief function is created to convert the list of values into dataframe. 
+#/// \returns value i.e. 
+#////////////////////////////////////////////////////////////////////////////////////////////////////
 def listToPandaDataFrame(List1):
     pandaDataFrame = pan.DataFrame(List1,columns=['col1','col2'])
     return pandaDataFrame
