@@ -1,8 +1,8 @@
 
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 #/// \file Half_Life_Calculator.py
-#/// \brief 
-#/// 
+#/// \brief A python program built to calculate the transcript half lives for the three replicates
+#///        using time series data.
 #///
 #//  Author: Divya Singhal
 #////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -16,8 +16,8 @@ from operator import itemgetter
 
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 #/// \function ParseTextIntoTables 
-#/// \brief function is created to load the given data in text format and reading into table.
-#/// \returns value i.e. 
+#/// \brief function read's a text file and put's the values in a list
+#/// \returns value i.e. list of read values from the text file
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 def ParseTextIntoTables(table,x,y):
     values = list()
@@ -30,8 +30,8 @@ def ParseTextIntoTables(table,x,y):
 
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 #/// \function HalfLifeCalculator
-#/// \brief function is created to evaluate the transcript half life. 
-#/// \returns value i.e. 
+#/// \brief function evaluate's the transcript half life
+#/// \returns value i.e. list of identified halflife values
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 def HalfLifeCalculator(values):
     HalfLife = list()
@@ -45,7 +45,7 @@ def HalfLifeCalculator(values):
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 #/// \function HandleNaN 
 #/// \brief function created to replace any NAN value with the mean value of the data. 
-#/// \returns value i.e. 
+#/// \returns value i.e. new list with NAN values replaced with mean values
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 def HandleNaN(listValues):
     df = pan.DataFrame({
@@ -65,7 +65,7 @@ def HandleNaN(listValues):
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 #/// \function listToPandaDataFrame 
 #/// \brief function is created to convert the list of values into dataframe. 
-#/// \returns value i.e. 
+#/// \returns value i.e. dataframe
 #////////////////////////////////////////////////////////////////////////////////////////////////////
 def listToPandaDataFrame(List1):
     pandaDataFrame = pan.DataFrame(List1,columns=['col1','col2'])
