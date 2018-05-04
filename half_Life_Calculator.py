@@ -1,13 +1,14 @@
 
 # coding: utf-8
 
-
+#import the required packages
 import csv
 import numpy as np
 import pandas as pan
 from scipy import stats
 from operator import itemgetter
 
+# ParseTextIntoTables function is created to load the given data in text format and and reading into table.
 def ParseTextIntoTables(table,x,y):
     values = list()
     rows = len(table)
@@ -17,6 +18,7 @@ def ParseTextIntoTables(table,x,y):
         values.append(updatedVal)
     return values
 
+# HalfLifeCalculator function is created to evaluate the transcript half life.
 def HalfLifeCalculator(values):
     HalfLife = list()
     rows = len(values)
@@ -26,6 +28,7 @@ def HalfLifeCalculator(values):
         HalfLife.append(tempHL)
     return HalfLife
 
+# HandleNaN function created to replace any NAN value with the mean value of the data.
 def HandleNaN(listValues):
     df = pan.DataFrame({
     'Cordinates': pan.Series(
@@ -41,11 +44,12 @@ def HandleNaN(listValues):
     meanList = df.fillna(df.mean(),axis=0)
     return meanList['Cordinates'].values.tolist()
 
+#listToPandaDataFrame function is created to convert the list of values into dataframe.
 def listToPandaDataFrame(List1):
     pandaDataFrame = pan.DataFrame(List1,columns=['col1','col2'])
     return pandaDataFrame
     
-
+#using the functions defined above calcualte the half life of a transcript.
 tableValues = pan.read_table('DecayTimecourse.txt',header=None)
 table_1 = ParseTextIntoTables(tableValues, 1, 9)
 table_2 = ParseTextIntoTables(tableValues, 10, 18)
@@ -72,9 +76,11 @@ SortedHalfLife_PandaDF = HalfLife_PandaDF.sort_values("col2")
 numberRows = len(SortedHalfLife_PandaDF)
 tenPerNum = int(numberRows*0.10)
 
+#filter out the top and bottom ten values.
 topTenValues = SortedHalfLife_PandaDF.tail(tenPerNum)
 BottomTenValues = SortedHalfLife_PandaDF.head(tenPerNum)
 
+#save the result to the csv format.
 topTenValues.to_csv("topTenValues.txt",sep='\t',encoding='utf-8')
 BottomTenValues.to_csv("bottonTenValues.txt",sep='\t', encoding='utf-8')
 
